@@ -1,0 +1,104 @@
+{
+  "users": {
+    "validUser": {
+      "name": "Rahul Sharma",
+      "email": "rahul.sharma@example.com",
+      "password": "Password123"
+    },
+    "loginUser": {
+      "email": "rahul.sharma@example.com",
+      "password": "Password123"
+    },
+    "invalidPasswordUser": {
+      "email": "rahul.sharma@example.com",
+      "password": "WrongPassword999"
+    },
+    "unknownUser": {
+      "email": "nonexistent.user999@example.com",
+      "password": "Password123"
+    },
+    "shortPasswordUser": {
+      "name": "Short Pass User",
+      "email": "shortpass@example.com",
+      "password": "12345"
+    },
+    "missingFieldUser": {
+      "email": "nofield@example.com",
+      "password": "Password123"
+    }
+  },
+  "restaurants": {
+    "validId": 1,
+    "validId2": 2,
+    "invalidId": 999,
+    "validRestaurantName": "Spice Garden",
+    "validMenu": {
+      "itemId": 101,
+      "itemName": "Paneer Biryani",
+      "price": 180
+    },
+    "invalidItemId": 9999
+  },
+  "cart": {
+    "validUserId": 1,
+    "validRestaurantId": 1,
+    "validItemId": 101,
+    "validItemPrice": 180,
+    "quantities": {
+      "nominal": 2,
+      "min": 1,
+      "minPlusOne": 2,
+      "mid": 5,
+      "maxMinusOne": 9,
+      "max": 10,
+      "minMinusOne": 0,
+      "maxPlusOne": 11,
+      "negative": -1
+    }
+  },
+  "order": {
+    "validAddress": "Flat 402, Green Valley Apartments, Mumbai - 400001",
+    "paymentMethods": {
+      "cod": "Cash on Delivery",
+      "creditCard": "Credit Card",
+      "upi": "UPI",
+      "invalidMethod": "BitCoin"
+    },
+    "invalidOrderId": 99999
+  },
+  "ecpPartitions": {
+    "quantity": {
+      "valid": "1 to 10",
+      "invalidBelow": "< 1",
+      "invalidAbove": "> 10"
+    },
+    "password": {
+      "valid": ">= 6 characters",
+      "invalid": "< 6 characters"
+    },
+    "restaurantId": {
+      "valid": "1, 2",
+      "invalid": "999"
+    },
+    "itemId": {
+      "valid": "101, 102, 103, 201, 202",
+      "invalid": "9999"
+    }
+  },
+  "bvaBoundaries": {
+    "quantity": [
+      { "testId": "BVA-CART-001", "value": 0, "expectedStatus": 400, "type": "Min - 1 (Invalid)" },
+      { "testId": "BVA-CART-002", "value": 1, "expectedStatus": 201, "type": "Min (Valid)" },
+      { "testId": "BVA-CART-003", "value": 2, "expectedStatus": 201, "type": "Min + 1 (Valid)" },
+      { "testId": "BVA-CART-004", "value": 5, "expectedStatus": 201, "type": "Nominal (Valid)" },
+      { "testId": "BVA-CART-005", "value": 9, "expectedStatus": 201, "type": "Max - 1 (Valid)" },
+      { "testId": "BVA-CART-006", "value": 10, "expectedStatus": 201, "type": "Max (Valid)" },
+      { "testId": "BVA-CART-007", "value": 11, "expectedStatus": 400, "type": "Max + 1 (Invalid)" }
+    ],
+    "passwordLength": [
+      { "testId": "BVA-AUTH-001", "length": 5, "password": "abcde", "expectedStatus": 400, "type": "Min - 1 (Invalid)" },
+      { "testId": "BVA-AUTH-002", "length": 6, "password": "abcdef", "expectedStatus": 201, "type": "Min (Valid)" },
+      { "testId": "BVA-AUTH-003", "length": 7, "password": "abcdefg", "expectedStatus": 201, "type": "Min + 1 (Valid)" }
+    ]
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 7,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-11-17T17:52:29.008Z",
+    "end": "2026-11-17T17:52:29.251Z",
+    "duration": 243,
+    "testsRegistered": 7,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "badb9672-11d4-4ef8-b93c-72560dca0079",
+      "title": "",
+      "fullFile": "cypress\\e2e\\api\\restaurant.cy.js",
+      "file": "cypress\\e2e\\api\\restaurant.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0dfe6eb9-b782-46b8-9c73-68206be88d68",
+          "title": "Restaurants & Health API Test Suite",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "TC-HEALTH-001: Check API health endpoint",
+              "fullTitle": "Restaurants & Health API Test Suite TC-HEALTH-001: Check API health endpoint",
+              "timedOut": null,
+              "duration": 40,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: '/api/health'\n}).then(response => {\n  cy.log(`GET /api/health Response Time: ${response.duration} ms`);\n  expect(response.status).to.eq(200);\n  expect(response.body.success).to.be.true;\n  expect(response.body.message).to.include('healthy');\n  expect(response.body).to.have.property('timestamp');\n  expect(response.duration).to.be.lessThan(1000);\n});",
+              "err": {},
+              "uuid": "1ddd4dc4-7fdf-425e-9506-58cf9ed3e2a8",
+              "parentUUID": "0dfe6eb9-b782-46b8-9c73-68206be88d68",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-REST-001: Get all restaurants",
+              "fullTitle": "Restaurants & Health API Test Suite TC-REST-001: Get all restaurants",
+              "timedOut": null,
+              "duration": 22,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: '/api/restaurants'\n}).then(response => {\n  cy.log(`GET /api/restaurants Response Time: ${response.duration} ms`);\n  expect(response.status).to.eq(200);\n  expect(response.body.success).to.be.true;\n  expect(response.body.data).to.be.an('array');\n  expect(response.body.data.length).to.be.at.least(2);\n  const firstRestaurant = response.body.data[0];\n  expect(firstRestaurant).to.have.all.keys('id', 'name', 'cuisine', 'rating', 'menu');\n  expect(firstRestaurant.menu).to.be.an('array');\n  expect(response.duration).to.be.lessThan(1000);\n});",
+              "err": {},
+              "uuid": "b48ce71f-dc54-4c3f-b2fa-ea99f0546d0f",
+              "parentUUID": "0dfe6eb9-b782-46b8-9c73-68206be88d68",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-REST-002: Get restaurant by valid ID (ID: 1)",
+              "fullTitle": "Restaurants & Health API Test Suite TC-REST-002: Get restaurant by valid ID (ID: 1)",
+              "timedOut": null,
+              "duration": 19,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: `/api/restaurants/${testData.restaurants.validId}`\n}).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body.success).to.be.true;\n  expect(response.body.data.id).to.eq(testData.restaurants.validId);\n  expect(response.body.data.name).to.eq(testData.restaurants.validRestaurantName);\n  expect(response.body.data).to.have.property('cuisine');\n  expect(response.body.data).to.have.property('rating');\n});",
+              "err": {},
+              "uuid": "60b0bab1-8072-4d33-afed-039636d6354f",
+              "parentUUID": "0dfe6eb9-b782-46b8-9c73-68206be88d68",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-REST-003: Get invalid restaurant ID (ID: 999)",
+              "fullTitle": "Restaurants & Health API Test Suite TC-REST-003: Get invalid restaurant ID (ID: 999)",
+              "timedOut": null,
+              "duration": 16,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: `/api/restaurants/${testData.restaurants.invalidId}`,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(404);\n  expect(response.body.success).to.be.false;\n  expect(response.body.message).to.eq('Restaurant not found');\n});",
+              "err": {},
+              "uuid": "61a4946a-f1bc-46b3-8a15-10e1decf2514",
+              "parentUUID": "0dfe6eb9-b782-46b8-9c73-68206be88d68",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-REST-004: Get menu for valid restaurant (ID: 1)",
+              "fullTitle": "Restaurants & Health API Test Suite TC-REST-004: Get menu for valid restaurant (ID: 1)",
+              "timedOut": null,
+              "duration": 20,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: `/api/restaurants/${testData.restaurants.validId}/menu`\n}).then(response => {\n  cy.log(`GET /api/restaurants/1/menu Response Time: ${response.duration} ms`);\n  expect(response.status).to.eq(200);\n  expect(response.body.success).to.be.true;\n  expect(response.body.restaurantId).to.eq(testData.restaurants.validId);\n  expect(response.body.data).to.be.an('array');\n  expect(response.body.data.length).to.be.greaterThan(0);\n  const item = response.body.data[0];\n  expect(item).to.have.all.keys('id', 'name', 'price');\n  expect(item.price).to.be.a('number');\n  expect(response.duration).to.be.lessThan(1000);\n});",
+              "err": {},
+              "uuid": "ca6a02e2-5099-49e3-9d7b-d3276e56a17f",
+              "parentUUID": "0dfe6eb9-b782-46b8-9c73-68206be88d68",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-REST-005: Get menu for invalid restaurant (ID: 999)",
+              "fullTitle": "Restaurants & Health API Test Suite TC-REST-005: Get menu for invalid restaurant (ID: 999)",
+              "timedOut": null,
+              "duration": 14,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: `/api/restaurants/${testData.restaurants.invalidId}/menu`,\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(404);\n  expect(response.body.success).to.be.false;\n  expect(response.body.message).to.eq('Restaurant not found');\n});",
+              "err": {},
+              "uuid": "e171429e-2c55-4b88-90e9-ea309a17e0e7",
+              "parentUUID": "0dfe6eb9-b782-46b8-9c73-68206be88d68",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "TC-REST-EDGE-001: Get restaurant with non-numeric ID",
+              "fullTitle": "Restaurants & Health API Test Suite TC-REST-EDGE-001: Get restaurant with non-numeric ID",
+              "timedOut": null,
+              "duration": 13,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: '/api/restaurants/not-a-number',\n  failOnStatusCode: false\n}).then(response => {\n  expect(response.status).to.eq(404);\n  expect(response.body.success).to.be.false;\n});",
+              "err": {},
+              "uuid": "f667acd6-1751-4add-a60f-754faea8bc53",
+              "parentUUID": "0dfe6eb9-b782-46b8-9c73-68206be88d68",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1ddd4dc4-7fdf-425e-9506-58cf9ed3e2a8",
+            "b48ce71f-dc54-4c3f-b2fa-ea99f0546d0f",
+            "60b0bab1-8072-4d33-afed-039636d6354f",
+            "61a4946a-f1bc-46b3-8a15-10e1decf2514",
+            "ca6a02e2-5099-49e3-9d7b-d3276e56a17f",
+            "e171429e-2c55-4b88-90e9-ea309a17e0e7",
+            "f667acd6-1751-4add-a60f-754faea8bc53"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 144,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "results/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

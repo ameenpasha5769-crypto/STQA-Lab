@@ -1,0 +1,48 @@
+{
+  "users": [],
+  "restaurants": [
+    {
+      "id": 1,
+      "name": "Spice Garden",
+      "cuisine": "Indian",
+      "rating": 4.5,
+      "menu": [
+        {
+          "id": 101,
+          "name": "Paneer Biryani",
+          "price": 180
+        },
+        {
+          "id": 102,
+          "name": "Butter Naan",
+          "price": 60
+        },
+        {
+          "id": 103,
+          "name": "Chicken Biryani",
+          "price": 220
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Pizza Hub",
+      "cuisine": "Italian",
+      "rating": 4.2,
+      "menu": [
+        {
+          "id": 201,
+          "name": "Margherita Pizza",
+          "price": 199
+        },
+        {
+          "id": 202,
+          "name": "Farmhouse Pizza",
+          "price": 299
+        }
+      ]
+    }
+  ],
+  "cart": [],
+  "orders": []
+}

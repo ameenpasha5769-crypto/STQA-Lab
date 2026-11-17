@@ -1,0 +1,12 @@
+{
+  "name": "online-food-ordering-backend",
+  "version": "1.0.0",
+  "description": "REST API backend for Online Food Ordering SUT",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
